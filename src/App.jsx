@@ -6,7 +6,7 @@
 // 4. Set base:'/your-repo-name/' in vite.config.js
 // 5. npm run build && deploy to GitHub Pages
 
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function App() {
   return (
