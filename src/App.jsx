@@ -1,78 +1,149 @@
-// Minimal Personal Intro Website
-// Deploy-ready with Vite + GitHub Pages
-// 1. npm create vite@latest personal-site -- --template react
-// 2. Replace src/App.jsx with this file
-// 3. npm install framer-motion
-// 4. Set base:'/your-repo-name/' in vite.config.js
-// 5. npm run build && deploy to GitHub Pages
-
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Mail, ExternalLink } from "lucide-react";
 
 export default function App() {
+  const books = [
+    { title: "霍乱时期的爱情", year: "2022" },
+    { title: "花街往事", year: "2023" },
+    { title: "献给阿尔吉侬的花束", year: "2021" },
+    { title: "花开不败", year: "2020" },
+    { title: "挪威的森林", year: "2022" },
+    { title: "麦田里的守望者", year: "2019" },
+    { title: "1988：我想和这个世界谈谈", year: "2023" },
+    { title: "草民", year: "2024" },
+    { title: "命运", year: "2024" },
+    { title: "少年巴比伦", year: "2021" },
+    { title: "追随她的旅程", year: "2022" },
+  ];
+
+  const videoRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+            video.classList.add("fade-in");
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    videoRefs.current.forEach((video) => {
+      if (video) observer.observe(video);
+    });
+
+    return () => {
+      videoRefs.current.forEach((video) => {
+        if (video) observer.unobserve(video);
+      });
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans">
-      <section className="h-screen flex flex-col justify-center items-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-5xl font-light mb-4"
-        >
-          Zhou Jie
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
-          className="text-gray-500"
-        >
-          Travel · Reading · Observation
-        </motion.p>
-      </section>
+    <div className="layout">
 
-      <section className="max-w-5xl mx-auto px-6 py-32">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl font-light mb-12"
-        >
-          Photography
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.4 }}
-              className="aspect-square bg-gray-100 rounded-2xl"
-            />
-          ))}
-        </div>
-      </section>
+      {/* 左侧目录 */}
+      <aside className="sidebar">
+        <h2>周杰 / Dylan</h2>
+        <nav>
+          <a href="#about">About</a>
+          <a href="#reading">Reading</a>
+          <a href="#travel">Travel</a>
+          <a href="#photography">Photography</a>
+          <a href="#links">Links</a>
+        </nav>
+      </aside>
 
-      <section className="bg-gray-50 py-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl font-light mb-12"
-          >
-            Video Journal
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="aspect-video bg-gray-200 rounded-2xl"
-          />
-        </div>
-      </section>
+      {/* 主体内容 */}
+      <main className="content">
 
-      <footer className="py-16 text-center text-gray-400 text-sm">
-        © {new Date().getFullYear()} Zhou Jie
-      </footer>
+        <section id="about">
+          <h1>周杰 / Dylan</h1>
+          <p className="subtitle">
+            A pessimist in the third quadrant, yet passionate about movement.
+          </p>
+          <p>第三象限的悲观主义者，但热爱运动。现居成都。</p>
+        </section>
+
+        <section id="reading">
+          <h2>Reading</h2>
+          <ul className="hanging-list">
+            {books.map((book, index) => (
+              <li key={index}>
+                <span className="year">{book.year}</span>
+                {book.title}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="travel">
+          <h2>Travel</h2>
+          <p>城市观察、徒步、远行。旅行是我理解世界的方式。</p>
+
+          <div className="travel-video-row">
+            {[1, 2, 3].map((num, index) => (
+              <div className="video-wrapper" key={num}>
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  src={`/videos/travel${num}.mp4`}
+                  muted
+                  loop
+                  playsInline
+                />
+                <div className="play-overlay">▶</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="photography">
+          <h2>Photography</h2>
+          <div className="photo-grid">
+            <img src="../public/videos/travel1.mp4" alt="" />
+            <img src="../public/videos/travel2.mp4" alt="" />
+            <img src="../public/videos/travel3.mp4" alt="" />
+            <img src="../public/videos/travel4.mp4" alt="" />
+          </div>
+        </section>
+
+        <section id="links">
+          <h2>Links</h2>
+          <ul className="links">
+            <li>
+              <Mail size={16} />
+              <a href="mailto:zhou.1900@jiyunhudong.com">
+                zhou.1900@jiyunhudong.com
+              </a>
+            </li>
+            <li>
+              <ExternalLink size={16} />
+              <a href="https://v.douyin.com/VWYUIrtxV2Y/" target="_blank" rel="noreferrer">
+                Douyin
+              </a>
+            </li>
+            <li>
+              <ExternalLink size={16} />
+              <a href="https://www.douban.com/people/269994208/" target="_blank" rel="noreferrer">
+                Douban
+              </a>
+            </li>
+            <li>
+              <ExternalLink size={16} />
+              <a href="https://xhslink.com/m/39qXQZqVMys" target="_blank" rel="noreferrer">
+                Xiaohongshu
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </main>
     </div>
   );
 }
