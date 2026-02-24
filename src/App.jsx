@@ -94,18 +94,18 @@ export default function App() {
             A pessimist in the third quadrant, yet passionate about movement.
           </p>
           <p>
-            第三象限的悲观主义者，但热爱运动。现居成都。
+            因为天气好，因为天气不好，因为天气感刚好。现居成都。
           </p>
         </section>
 
         <section id="reading">
-          <h2>Reading_recently</h2>
+          <h2>Reading_favorite</h2>
           <div className="div_books" >
             <ul className="hanging-list">
               {books.map((book, index) => (
                 <li key={index}>
                   <span className="year">{book.year}</span>
-                  {book.title}
+                  《{book.title}》
                 </li>
               ))}
             </ul>
@@ -118,7 +118,7 @@ export default function App() {
 
           <h2>Travel</h2>
           <p>
-            城市观察、徒步、远行。旅行是我理解世界的方式。
+            嘿！快看那边。
           </p>
 
           <div className="slider-wrapper" ref={sliderRef}>
@@ -159,6 +159,22 @@ export default function App() {
                 { src: "images/photo12.jpg", title: "傍晚", desc: "昆明 · 2024" },
                 { src: "images/photo13.jpg", title: "群山", desc: "川西 · 2024" },
                 { src: "images/photo14.jpg", title: "矮油，不错哦", desc: "海口 · 2024" },
+                { src: "images/photo16.jpg", title: "氧气", desc: "川西 · 2024" },
+                { src: "images/photo17.jpg", title: "苍山浮在洱海上", desc: "大理 · 2024" },
+                { src: "images/photo18.jpg", title: "燥热的空气", desc: "海南某处 · 2024" },
+                { src: "images/photo19.jpg", title: "境", desc: "鱼子西 · 2024" },
+                { src: "images/photo20.jpg", title: "快拍", desc: "鱼子西 · 2024" },
+                { src: "images/photo21.jpg", title: "新疆？", desc: "随机点 · 2024" },
+                { src: "images/photo22.jpg", title: "门缝里看鸥", desc: "昆明 · 2024" },
+                { src: "images/photo23.jpg", title: "翠湖", desc: "昆明 · 2024" },
+                { src: "images/photo24.jpg", title: "下一秒即将开抢的牛仔", desc: "昆明 · 2024" },
+                { src: "images/photo25.jpg", title: "呔", desc: "昆明 · 2024" },
+                { src: "images/photo26.jpg", title: "你贵，但值", desc: "昆明 · 2024" },
+                { src: "images/photo27.jpg", title: "你见到小王子了吗", desc: "鱼子西 · 2024" },
+                { src: "images/photo28.jpg", title: "威猛猛兽_Ariza", desc: "成都 · 2024" },
+                { src: "images/photo29.jpg", title: "小家伙", desc: "成都 · 2024" },
+                { src: "images/photo30.jpg", title: "日出", desc: "鱼子西 · 2024" },
+                { src: "images/photo31.jpg", title: "蔑", desc: "Home · 2024" },
               ].map((item, index) => (
                 <div 
                 className="photo-card" 
