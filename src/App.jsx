@@ -131,7 +131,7 @@ export default function App() {
                   muted
                   loop
                   playsInline
-                  control
+                  controls
                 />
               ))}
             </div>
