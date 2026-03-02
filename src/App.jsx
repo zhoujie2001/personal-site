@@ -142,7 +142,7 @@ export default function App() {
         <section id="photography">
           <h2>Photography</h2>
           <section id="photography">
-            <h2>Photography</h2>
+            <h2>cut</h2>
 
             <div className="photo-grid">
               {[
