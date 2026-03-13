@@ -174,8 +174,7 @@ export default function App() {
                 { src: "images/photo27.jpg", title: "你见到小王子了吗", desc: "鱼子西 · 2024" },
                 { src: "images/photo28.jpg", title: "威猛猛兽_Ariza", desc: "成都 · 2024" },
                 { src: "images/photo29.jpg", title: "小家伙", desc: "成都 · 2024" },
-                { src: "images/photo30.jpg", title: "日出", desc: "鱼子西 · 2024" },
-                { src: "images/photo31.jpg", title: "蔑", desc: "Home · 2024" },
+                { src: "images/photo30.jpg", title: "日出", desc: "鱼子西 · 2024" }
               ].map((item, index) => (
                 <div 
                 className="photo-card" 
